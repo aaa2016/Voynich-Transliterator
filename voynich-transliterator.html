@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <title id="pageTitle">Voynich Manuscript Transliterator</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="Artur A.">
+
+		<script>
+		
+		  function clearForm() {
+		  
+		    document.forms["ioForm"].inputBox.value = "";
+		    document.forms["ioForm"].outputBox.value = "";
+		  
+		  }
+		  
+		  function clearConfig() {
+		  
+		    document.forms["configForm"].configA.value = "a";
+            document.forms["configForm"].configB.value = "b";
+            document.forms["configForm"].configC.value = "c";
+            document.forms["configForm"].configD.value = "d";
+            document.forms["configForm"].configE.value = "e";
+            document.forms["configForm"].configF.value = "f";
+            document.forms["configForm"].configG.value = "g";
+            document.forms["configForm"].configH.value = "h";
+            document.forms["configForm"].configI.value = "i";
+            document.forms["configForm"].configJ.value = "j";
+            document.forms["configForm"].configK.value = "k";
+            document.forms["configForm"].configL.value = "l";
+            document.forms["configForm"].configM.value = "m";
+            document.forms["configForm"].configN.value = "n";
+            document.forms["configForm"].configO.value = "o";
+            document.forms["configForm"].configP.value = "p";
+            document.forms["configForm"].configQ.value = "q";
+            document.forms["configForm"].configR.value = "r";
+            document.forms["configForm"].configS.value = "s";
+            document.forms["configForm"].configT.value = "t";
+            document.forms["configForm"].configU.value = "u";
+            document.forms["configForm"].configV.value = "v";
+            document.forms["configForm"].configW.value = "w";
+            document.forms["configForm"].configX.value = "x";
+            document.forms["configForm"].configY.value = "y";
+            document.forms["configForm"].configZ.value = "z";
+		  
+		  }
+		  
+		  function setExampleConfig() {
+		  
+		    document.forms["configForm"].configA.value = "ə";
+            document.forms["configForm"].configB.value = "-";
+            document.forms["configForm"].configC.value = "-";
+            document.forms["configForm"].configD.value = "t";
+            document.forms["configForm"].configE.value = "o";
+            document.forms["configForm"].configF.value = "-";
+            document.forms["configForm"].configG.value = "-";
+            document.forms["configForm"].configH.value = "-";
+            document.forms["configForm"].configI.value = "i"; // Need to add 'ii' = 'u'
+            document.forms["configForm"].configJ.value = "-";
+            document.forms["configForm"].configK.value = "k";
+            document.forms["configForm"].configL.value = "-";
+            document.forms["configForm"].configM.value = "r";
+            document.forms["configForm"].configN.value = "r";
+            document.forms["configForm"].configO.value = "a";
+            document.forms["configForm"].configP.value = "-";
+            document.forms["configForm"].configQ.value = "-";
+            document.forms["configForm"].configR.value = "r";
+            document.forms["configForm"].configS.value = "s";
+            document.forms["configForm"].configT.value = "-";
+            document.forms["configForm"].configU.value = "-";
+            document.forms["configForm"].configV.value = "-";
+            document.forms["configForm"].configW.value = "-";
+            document.forms["configForm"].configX.value = "-";
+            document.forms["configForm"].configY.value = "n";
+            document.forms["configForm"].configZ.value = "-";
+		  
+		  }
+		  
+		  function setExampleText() {
+		  
+		    // Uses f1v 1-10 in Eva
+		  
+		    document.forms["ioForm"].inputBox.value = 
+		      "kchsy.chadaiin.ol.oltchey.char.cfhar.am\n" +
+              "yteeay.char.or.ochy.dcho.lkody.okodar.chody\n" +
+              "do.ckhy.ckho.ckhy.shy.dksheey.cthy.kotchody.dal\n" +
+              "dol.chokeo.dair.dam.sochey.chokody\n" +
+              "potoy.shol.dair.cphoal.dar.chey.tody.otoaiin.shoshy\n" +
+              "choky.chol.cthol.shol.okal.dolchey.chodo.lol.chy.cthy\n" +
+              "qo.ol.choeee.cheol.dol.cthey.ykol.dol.dolo.ykol.do.lchody\n" +
+              "okol.shol.kol.kechy.chol.ky.chol.cthol.chody.chol.daiin\n" +
+              "shor.okol.chol.dol.ky.dar.shol.dchor.otcho.dar.shody\n" +
+              "taor.chotchey.dal.chody.schody.pol.chodar";
+		  
+		  }
+		  		
+		  function generate() {
+		  		  
+		  	var cipher = "";
+		  	cipher = cipher.concat(document.forms["configForm"].configA.value);
+		    cipher = cipher.concat(document.forms["configForm"].configB.value);
+		    cipher = cipher.concat(document.forms["configForm"].configC.value);
+		    cipher = cipher.concat(document.forms["configForm"].configD.value);
+		    cipher = cipher.concat(document.forms["configForm"].configE.value);
+		    cipher = cipher.concat(document.forms["configForm"].configF.value);
+		    cipher = cipher.concat(document.forms["configForm"].configG.value);
+		    cipher = cipher.concat(document.forms["configForm"].configH.value);
+		    cipher = cipher.concat(document.forms["configForm"].configI.value);
+		    cipher = cipher.concat(document.forms["configForm"].configJ.value);
+		    cipher = cipher.concat(document.forms["configForm"].configK.value);
+		    cipher = cipher.concat(document.forms["configForm"].configL.value);
+		    cipher = cipher.concat(document.forms["configForm"].configM.value);
+		    cipher = cipher.concat(document.forms["configForm"].configN.value);
+		    cipher = cipher.concat(document.forms["configForm"].configO.value);
+		    cipher = cipher.concat(document.forms["configForm"].configP.value);
+		    cipher = cipher.concat(document.forms["configForm"].configQ.value);
+		    cipher = cipher.concat(document.forms["configForm"].configR.value);
+		    cipher = cipher.concat(document.forms["configForm"].configS.value);
+		    cipher = cipher.concat(document.forms["configForm"].configT.value);
+		    cipher = cipher.concat(document.forms["configForm"].configU.value);
+		    cipher = cipher.concat(document.forms["configForm"].configV.value);
+		    cipher = cipher.concat(document.forms["configForm"].configW.value);
+		    cipher = cipher.concat(document.forms["configForm"].configX.value);
+		    cipher = cipher.concat(document.forms["configForm"].configY.value);
+		    cipher = cipher.concat(document.forms["configForm"].configZ.value);
+		    
+		    //console.log("Cipher is: " + cipher);
+
+		    var input = document.forms["ioForm"].inputBox.value;
+		    
+		    //console.log("Input is " + input);
+		    
+		    input = input.replace(/[.]/g," ");
+		    
+		    //console.log("Input without . is " + input);
+		    
+		    var output = "";
+		    
+		    for (i=0; i<input.length; i++) {
+		    
+		      //console.log("CharCode: " + input.charCodeAt(i));
+		    
+		      for (j=0; j<cipher.length; j++) {
+		      
+		        if (input.charCodeAt(i) == (32)) {
+		        
+		          output = output.concat(" ");
+		          
+		          break;
+		        
+		        } else if (input.charCodeAt(i) == (j+97)) {
+		          
+		          //console.log("Added char is " + cipher[j]);
+		          
+		          output = output.concat(cipher[j]);
+		          
+		          break;
+		          
+		        };  
+		      
+		      }; // j loop
+		    
+		    }; // i loop
+		    
+		    //console.log("Output is " + output);
+		    
+		    document.forms["ioForm"].outputBox.value = output;
+		    
+		  }
+		
+		</script>
+
+	<style>
+	
+		body {font-family: sans-serif}
+		h1, h2, h3, noscript, form {text-align: center}
+		table, th, td {
+  		  border: 1px solid black;
+  		  margin: auto;
+  		}
+  		
+  		.cropped {
+  		  margin: auto;
+  		  width: 800px;
+          height: 76px;
+          overflow: hidden;
+  		}
+  		
+  		.label {
+  		  font-weight: bold;
+  		  margin: auto;
+  		  display: inline;
+  		}
+  		
+  		.footnote {
+  		  font-size: small;
+  		  margin: 10px;
+  		  text-align: center;
+  		}
+  		
+	</style>
+
+  </head>
+
+  <body>
+  <h1>Voynich Manuscript Transliterator</h2>
+  
+  <form name="configForm">
+  
+    <div class="cropped">
+      <!--Image source: VonHaarberg, CC BY-SA 4.0 via Wikimedia Commons-->
+      <a href="https://commons.wikimedia.org/wiki/File:Voynich_EVA.svg" target="_blank">
+      <img src="Voynich_EVA.svg" alt="Voynich EVA letters" width="800px">
+      </a>
+    </div>
+    
+    <!--Configuration table-->
+    <h3>Configuration table</h3>
+    <table id="configTable">
+      <tr>
+        <td>EvaT</td>
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+        <td>d</td>
+        <td>e</td>
+        <td>f</td>
+        <td>g</td>
+        <td>h</td>
+        <td>i</td>
+        <td>j</td>
+        <td>k</td>
+        <td>l</td>
+        <td>m</td>
+      </tr>
+      <tr>
+        <td>Cipher</td>
+        <td><input type="text" name="configA" id="configA" size="1" value="a"></text></td>
+        <td><input type="text" name="configB" id="configB" size="1" value="b"></text></td>
+        <td><input type="text" name="configC" id="configC" size="1" value="c"></text></td>
+        <td><input type="text" name="configD" id="configD" size="1" value="d"></text></td>
+        <td><input type="text" name="configE" id="configE" size="1" value="e"></text></td>
+        <td><input type="text" name="configF" id="configF" size="1" value="f"></text></td>
+        <td><input type="text" name="configG" id="configG" size="1" value="g"></text></td>
+        <td><input type="text" name="configH" id="configH" size="1" value="h"></text></td>
+        <td><input type="text" name="configI" id="configI" size="1" value="i"></text></td>
+        <td><input type="text" name="configJ" id="configJ" size="1" value="j"></text></td>
+        <td><input type="text" name="configK" id="configK" size="1" value="k"></text></td>
+        <td><input type="text" name="configL" id="configL" size="1" value="l"></text></td>
+        <td><input type="text" name="configM" id="configM" size="1" value="m"></text></td>
+      </tr>
+      <tr>
+        <td>EvaT</td>
+        <td>n</td>
+        <td>o</td>
+        <td>p</td>
+        <td>q</td>
+        <td>r</td>
+        <td>s</td>
+        <td>t</td>
+        <td>u</td>
+        <td>v</td>
+        <td>w</td>
+        <td>x</td>
+        <td>y</td>
+        <td>z</td>
+      </tr>
+      <tr>
+        <td>Cipher</td>
+        <td><input type="text" name="configN" id="configN" size="1" value="n"></text></td>
+        <td><input type="text" name="configO" id="configO" size="1" value="o"></text></td>
+        <td><input type="text" name="configP" id="configP" size="1" value="p"></text></td>
+        <td><input type="text" name="configQ" id="configQ" size="1" value="q"></text></td>
+        <td><input type="text" name="configR" id="configR" size="1" value="r"></text></td>
+        <td><input type="text" name="configS" id="configS" size="1" value="s"></text></td>
+        <td><input type="text" name="configT" id="configT" size="1" value="t"></text></td>
+        <td><input type="text" name="configU" id="configU" size="1" value="u"></text></td>
+        <td><input type="text" name="configV" id="configV" size="1" value="v"></text></td>
+        <td><input type="text" name="configW" id="configW" size="1" value="w"></text></td>
+        <td><input type="text" name="configX" id="configX" size="1" value="x"></text></td>
+        <td><input type="text" name="configY" id="configY" size="1" value="y"></text></td>
+        <td><input type="text" name="configZ" id="configZ" size="1" value="z"></text></td>
+      </tr>
+    </table>
+    
+    <input type=button class="button" value="Try example (Bax)" 
+            onClick="setExampleConfig()"/>
+    <input type=button class="button" value="Clear configuration" onClick="clearConfig()"/>
+  
+  </form>
+  
+  <h3>Texts</h3>
+  
+  <form name="ioForm">
+    <!--Input/output table-->
+    <table id="ioTable">
+      <tr>
+        <td>
+          <div class="label">Input text</div> <!--TODO: Add automated page selector-->
+          <textarea id="inputBox" name="inputBox" rows="11" cols="60"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type=button class="button" value="Transliterate" onClick="generate()"/>
+          <input type=button class="button" value="Clear text boxes" onClick="clearForm()"/>
+          <input type=button class="button" value="Try example (f1v 1-10)" 
+            onClick="setExampleText()"/>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="label">Output text</div>
+          <textarea id="outputBox" name="outputBox" rows="11" cols="60"></textarea>
+        </td>
+      </tr>
+    </table>
+  
+  </form>
+  
+  <div class="footnote">
+    More information: <a href="https://en.wikipedia.org/wiki/Voynich_manuscript" 
+      target="_blank">https://en.wikipedia.org/wiki/Voynich_manuscript</a>
+  </div>
+  <div class="footnote">
+    Source of example configuration: Bax, S. A proposed partial decoding of the Voynich script (2014)
+     <a href="https://stephenbax.net/wp-content/uploads/2014/01/Voynich-a-provisional-partial-decoding-BAX.pdf" 
+      target="_blank">https://stephenbax.net/wp-content/uploads/2014/01/Voynich-a-provisional-partial-decoding-BAX.pdf</a>
+  </div>
+  <div class="footnote">
+    Source of example text (f1v 1-10): <a href="http://www.voynich.nu/data/VT0e-n.txt" 
+      target="_blank">http://www.voynich.nu/data/VT0e-n.txt</a> 
+    (More info: <a href="http://www.voynich.nu/transcr.html#links" target="_blank">
+      ttp://www.voynich.nu/transcr.html#links</a>)
+  </div>
+  </body>
+</html>
