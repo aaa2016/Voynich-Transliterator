@@ -146,11 +146,19 @@
 		      
 		        if (input.charCodeAt(i) == (32)) {
 		        
+		          // Keep spaces (char=32)
 		          output = output.concat(" ");
 		          
 		          break;
 		        
-		        } else if (input.charCodeAt(i) == (j+97)) {
+		        } else if (input.charCodeAt(i) == (10) || input.charCodeAt(i) == (13)) {
+		        
+		          // Keep newlines (char=13) or carriage returns (char=10)
+		          output = output.concat("\n");
+		          
+		          break;
+		          
+		        } else if (input.charCodeAt(i) == (j+97)) { // a=97, b=98 etc.
 		          
 		          //console.log("Added char is " + cipher[j]);
 		          
@@ -304,7 +312,7 @@
       </tr>
       <tr>
         <td>
-          <input type=button class="button" value="Transliterate" onClick="generate()"/>
+          <input type=button class="button" value="TRANSLITERATE" onClick="generate()"/>
           <input type=button class="button" value="Clear text boxes" onClick="clearForm()"/>
           <input type=button class="button" value="Try example (f1v 1-10)" 
             onClick="setExampleText()"/>
